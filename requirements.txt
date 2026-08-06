@@ -1,0 +1,9 @@
+fastapi==0.110.0
+uvicorn==0.28.0
+python-multipart==0.0.9
+scikit-learn==1.4.1.post1
+numpy==1.26.4
+pandas==2.2.1
+requests==2.31.0
+gTTS==2.5.1
+pydantic==2.6.4

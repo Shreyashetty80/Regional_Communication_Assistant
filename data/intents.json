@@ -1,0 +1,29 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "ನಮಸ್ಕಾರ",
+        "Namaskara",
+        "Solmelu",
+        "Devu boren korum"
+      ],
+      "responses": [
+        "ನಮಸ್ಕಾರ! ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?",
+        "Solmelu! Yan enkanchana help mpal?"
+      ]
+    },
+    {
+      "tag": "bus_timing",
+      "patterns": [
+        "ಬಸ್ ಸಮಯ ಎಷ್ಟು?",
+        "Bus time enchina?",
+        "Bus timings sangat"
+      ],
+      "responses": [
+        "ಮುಂದಿನ ಬಸ್ 10:30 ಕ್ಕೆ ಇದೆ.",
+        "Mundina bus 10:30 gunde."
+      ]
+    }
+  ]
+}
