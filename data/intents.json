@@ -2,28 +2,58 @@
   "intents": [
     {
       "tag": "greeting",
+
       "patterns": [
+        "hello",
+        "hi",
+        "good morning",
         "ನಮಸ್ಕಾರ",
         "Namaskara",
         "Solmelu",
-        "Devu boren korum"
+        "Devu borem korum"
       ],
-      "responses": [
-        "ನಮಸ್ಕಾರ! ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?",
-        "Solmelu! Yan enkanchana help mpal?"
-      ]
+
+      "responses": {
+        "en": [
+          "Hello! How can I help you?"
+        ],
+        "kn": [
+          "ನಮಸ್ಕಾರ! ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?"
+        ],
+        "tcy": [
+          "Solmelu! Yan enkanchana help mpal?"
+        ],
+        "kok": [
+          "Devu borem korum! Hanv tumka kashi madat korum?"
+        ]
+      }
     },
+
     {
       "tag": "bus_timing",
+
       "patterns": [
+        "what is the bus time",
+        "bus timing",
         "ಬಸ್ ಸಮಯ ಎಷ್ಟು?",
         "Bus time enchina?",
         "Bus timings sangat"
       ],
-      "responses": [
-        "ಮುಂದಿನ ಬಸ್ 10:30 ಕ್ಕೆ ಇದೆ.",
-        "Mundina bus 10:30 gunde."
-      ]
+
+      "responses": {
+        "en": [
+          "The next bus is at 10:30."
+        ],
+        "kn": [
+          "ಮುಂದಿನ ಬಸ್ 10:30 ಕ್ಕೆ ಇದೆ."
+        ],
+        "tcy": [
+          "Mundina bus 10:30 gunde."
+        ],
+        "kok": [
+          "Puddem bus 10:30ak asa."
+        ]
+      }
     }
   ]
 }
