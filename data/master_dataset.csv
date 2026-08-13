@@ -1,0 +1,21 @@
+id,text,language,intent,context,response
+1,Hello,en,greeting,new_conversation,Hello! How can I help you?
+2,Hi,en,greeting,new_conversation,Hello! How can I help you?
+3,Good morning,en,greeting,new_conversation,Good morning! How can I help you?
+4,Good evening,en,greeting,new_conversation,Good evening! How can I help you?
+5,Hello there,en,greeting,new_conversation,Hello! How can I help you?
+6,ನಮಸ್ಕಾರ,kn,greeting,new_conversation,ನಮಸ್ಕಾರ! ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?
+7,ನಮಸ್ತೆ,kn,greeting,new_conversation,ನಮಸ್ಕಾರ! ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?
+8,ಹಾಯ್,kn,greeting,new_conversation,ನಮಸ್ಕಾರ! ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?
+9,ಶುಭೋದಯ,kn,greeting,new_conversation,ಶುಭೋದಯ! ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?
+10,ಹಲೋ,kn,greeting,new_conversation,ನಮಸ್ಕಾರ! ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?
+11,Namaskara,tcy,greeting,new_conversation,Solmelu! Yan enkanchana help mpal?
+12,Solmelu,tcy,greeting,new_conversation,Solmelu! Yan enkanchana help mpal?
+13,Yenchina ullar?,tcy,greeting,new_conversation,Solmelu! Yan enkanchana help mpal?
+14,Namaskara anna,tcy,greeting,new_conversation,Solmelu! Yan enkanchana help mpal?
+15,"Solmelu, yenchina ullar?",tcy,greeting,new_conversation,Solmelu! Yan enkanchana help mpal?
+16,Dev borem korum,kok,greeting,new_conversation,Dev borem korum! Hanv tumka kashi madat korum?
+17,Dev borem,kok,greeting,new_conversation,Dev borem korum! Hanv tumka kashi madat korum?
+18,Kitem asa?,kok,greeting,new_conversation,Dev borem korum! Hanv tumka kashi madat korum?
+19,Namaskar,kok,greeting,new_conversation,Dev borem korum! Hanv tumka kashi madat korum?
+20,"Dev borem korum, kitem asa?",kok,greeting,new_conversation,Dev borem korum! Hanv tumka kashi madat korum?
