@@ -10,6 +10,7 @@ from pydantic import BaseModel
 from gtts import gTTS
 
 from context_manager import SessionContextManager
+from nlp_preprocessing import preprocess_text, detect_code_mixing
 
 
 # ---------------------------------------------------
@@ -354,41 +355,41 @@ async def process_voice(
     output_audio_path = (
         f"audio_temp/output_{user_id}.mp3"
     )
-
+	
     tts_language_map = {
-    "en": "en",
-    "kn-IN": "kn",
-    "kn": "kn",
-    "tcy-IN": "en",
-    "tcy": "en",
-    "kok-IN": "en",
-    "kok": "en"
-}
+        "en": "en",
+        "kn-IN": "kn",
+        "kn": "kn",
+        "tcy-IN": "en",
+        "tcy": "en",
+        "kok-IN": "en",
+        "kok": "en"
+    }
 
-tts_lang = tts_language_map.get(language, "en")
+    tts_lang = tts_language_map.get(language, "en")
 
-tts = gTTS(
-    text=response_text,
-    lang=tts_lang
-)
+    tts = gTTS(
+        text=response_text,
+        lang=tts_lang
+    )
 
     tts.save(output_audio_path)
 
     # 8. Return response
 
-    return {
+    return {    
 
-        "success": True,
+    	"success": True,
 
-        "user_id": user_id,
+    	"user_id": user_id,
 
-        "user_query_text": transcribed_text,
+    	"user_query_text": transcribed_text,
 
-        "intent": predicted_intent,
+    	"intent": predicted_intent,
 
-        "response_text": response_text,
+    	"response_text": response_text,
 
-        "audio_url": f"/get-audio/{user_id}"
+    	"audio_url": f"/get-audio/{user_id}"
 
     }
 
