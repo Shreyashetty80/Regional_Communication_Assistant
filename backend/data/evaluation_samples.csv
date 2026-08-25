@@ -1,0 +1,9 @@
+test_id,input,language,expected_intent
+TC01,Hello,en,greeting
+TC02,Good morning,en,greeting
+TC03,ನಮಸ್ಕಾರ,kn,greeting
+TC04,ನಮಸ್ತೆ,kn,greeting
+TC05,Namaskara,tcy,greeting
+TC06,Solmelu,tcy,greeting
+TC07,Dev borem kokum,kok,greeting
+TC08,Hi ನಮಸ್ಕಾರ,mixed,greeting
