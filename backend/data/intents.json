@@ -2,57 +2,273 @@
   "intents": [
     {
       "tag": "greeting",
-
       "patterns": [
         "hello",
         "hi",
         "good morning",
+        "good evening",
+        "how are you",
         "ನಮಸ್ಕಾರ",
+        "ಹಾಯ್",
+        "ಶುಭೋದಯ",
+        "ಹೇಗಿದ್ದೀರಾ?",
         "Namaskara",
         "Solmelu",
-        "Devu borem korum"
+        "Yenchina ullar?",
+        "Devu borem korum",
+        "Dev borem"
       ],
-
       "responses": {
-        "en": [
-          "Hello! How can I help you?"
-        ],
-        "kn": [
-          "ನಮಸ್ಕಾರ! ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?"
-        ],
-        "tcy": [
-          "Solmelu! Yan enkanchana help mpal?"
-        ],
-        "kok": [
-          "Devu borem korum! Hanv tumka kashi madat korum?"
-        ]
+        "en": ["Hello! How can I help you?"],
+        "kn": ["ನಮಸ್ಕಾರ! ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಲಿ?"],
+        "tcy": ["Solmelu! Yan enkanchana help mpal?"],
+        "kok": ["Devu borem korum! Hanv tumka kashi madat korum?"]
+      }
+    },
+
+    {
+      "tag": "farewell",
+      "patterns": [
+        "bye",
+        "goodbye",
+        "see you",
+        "talk to you later",
+        "ವಿದಾಯ",
+        "ಮತ್ತೆ ಸಿಗೋಣ",
+        "ನಂತರ ಮಾತನಾಡೋಣ",
+        "Bye",
+        "Poy",
+        "Namaskara",
+        "Dev borem"
+      ],
+      "responses": {
+        "en": ["Goodbye! Have a great day."],
+        "kn": ["ವಿದಾಯ! ಒಳ್ಳೆಯ ದಿನವಾಗಲಿ."],
+        "tcy": ["Poy! Dada olle dina irle."],
+        "kok": ["Dev borem! Borem dis asa."]
+      }
+    },
+
+    {
+      "tag": "thanks",
+      "patterns": [
+        "thank you",
+        "thanks",
+        "thank you very much",
+        "ಧನ್ಯವಾದ",
+        "ತುಂಬಾ ಧನ್ಯವಾದಗಳು",
+        "ನಿಮ್ಮ ಸಹಾಯಕ್ಕೆ ಧನ್ಯವಾದ",
+        "Thanks",
+        "Danyavad",
+        "Upkar"
+      ],
+      "responses": {
+        "en": ["You're welcome! I'm happy to help."],
+        "kn": ["ಪರವಾಗಿಲ್ಲ! ಸಹಾಯ ಮಾಡಲು ಸಂತೋಷವಾಗಿದೆ."],
+        "tcy": ["Parvagilla! Yan help malpoduku santhosha."],
+        "kok": ["Kitem na! Madat korunk mhaka anand asa."]
+      }
+    },
+
+    {
+      "tag": "help",
+      "patterns": [
+        "help me",
+        "can you help me",
+        "I need help",
+        "what can you do",
+        "ನನಗೆ ಸಹಾಯ ಬೇಕು",
+        "ನನಗೆ ಸಹಾಯ ಮಾಡುತ್ತೀರಾ?",
+        "ನೀವು ಏನು ಮಾಡಬಹುದು?",
+        "help malpu",
+        "Maka help zai"
+      ],
+      "responses": {
+        "en": ["I can answer questions, understand context, and communicate in regional languages."],
+        "kn": ["ನಾನು ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಬಹುದು, ಹಿಂದಿನ ಸಂಭಾಷಣೆಯ ಸಂದರ್ಭವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಬಹುದು ಮತ್ತು ಪ್ರಾದೇಶಿಕ ಭಾಷೆಗಳಲ್ಲಿ ಸಂವಹನ ಮಾಡಬಹುದು."],
+        "tcy": ["Yan questionsge answer malpodu, context artha malpodu mattu regional languagesd communication malpodu."],
+        "kok": ["Hanv prosnank uttor diunk, context somzonk ani regional bhashant communication korunk shakta."]
       }
     },
 
     {
       "tag": "bus_timing",
-
       "patterns": [
         "what is the bus time",
         "bus timing",
+        "when is the next bus",
+        "next bus",
+        "bus schedule",
         "ಬಸ್ ಸಮಯ ಎಷ್ಟು?",
+        "ಮುಂದಿನ ಬಸ್ ಯಾವಾಗ?",
+        "ಬಸ್ ವೇಳಾಪಟ್ಟಿ",
         "Bus time enchina?",
-        "Bus timings sangat"
+        "Mundina bus yavaga?",
+        "Bus timings sangat",
+        "Puddem bus kedna?"
       ],
-
       "responses": {
-        "en": [
-          "The next bus is at 10:30."
-        ],
-        "kn": [
-          "ಮುಂದಿನ ಬಸ್ 10:30 ಕ್ಕೆ ಇದೆ."
-        ],
-        "tcy": [
-          "Mundina bus 10:30 gunde."
-        ],
-        "kok": [
-          "Puddem bus 10:30ak asa."
-        ]
+        "en": ["The next bus is at 10:30."],
+        "kn": ["ಮುಂದಿನ ಬಸ್ 10:30 ಕ್ಕೆ ಇದೆ."],
+        "tcy": ["Mundina bus 10:30 gunde."],
+        "kok": ["Puddem bus 10:30ak asa."]
+      }
+    },
+
+    {
+      "tag": "education",
+      "patterns": [
+        "what is education",
+        "tell me about education",
+        "education meaning",
+        "education",
+        "ಶಿಕ್ಷಣ ಎಂದರೇನು?",
+        "ಶಿಕ್ಷಣದ ಬಗ್ಗೆ ತಿಳಿಸಿ",
+        "ಶಿಕ್ಷಣ ಎಂದರೇನು",
+        "education yenchina?",
+        "Shikshan yenchina?",
+        "Shikshan mhaka sang"
+      ],
+      "responses": {
+        "en": ["Education is the process of gaining knowledge, skills, values, and understanding."],
+        "kn": ["ಶಿಕ್ಷಣವು ಜ್ಞಾನ, ಕೌಶಲ್ಯ, ಮೌಲ್ಯಗಳು ಮತ್ತು ತಿಳುವಳಿಕೆಯನ್ನು ಪಡೆಯುವ ಪ್ರಕ್ರಿಯೆಯಾಗಿದೆ."],
+        "tcy": ["Shikshana andre jnana, kaushalya mattu artha kalpuna padeyondu process."],
+        "kok": ["Shikshan mhunnchem dnyan, kaushalya ani mulyam mellovpak ek process asa."]
+      }
+    },
+
+    {
+      "tag": "college",
+      "patterns": [
+        "college",
+        "college information",
+        "tell me about college",
+        "college timings",
+        "ಕಾಲೇಜಿನ ಬಗ್ಗೆ ತಿಳಿಸಿ",
+        "ಕಾಲೇಜು ಮಾಹಿತಿ",
+        "ಕಾಲೇಜು ಸಮಯ",
+        "college information yenchina?",
+        "college timing enchina?",
+        "College mhaka sang"
+      ],
+      "responses": {
+        "en": ["I can provide college-related information when it is available in my knowledge or project data."],
+        "kn": ["ನನ್ನ ಜ್ಞಾನ ಅಥವಾ ಪ್ರಾಜೆಕ್ಟ್ ಡೇಟಾದಲ್ಲಿ ಲಭ್ಯವಿರುವ ಕಾಲೇಜು ಸಂಬಂಧಿತ ಮಾಹಿತಿಯನ್ನು ನೀಡಬಹುದು."],
+        "tcy": ["Project data athava knowledge d college related information iddare yan adu provide malpodu."],
+        "kok": ["Mhoje knowledge athava project dataant college related information aslear hanv te diunk shakta."]
+      }
+    },
+
+    {
+      "tag": "technology",
+      "patterns": [
+        "what is technology",
+        "tell me about technology",
+        "technology meaning",
+        "what is artificial intelligence",
+        "what is AI",
+        "ತಂತ್ರಜ್ಞಾನ ಎಂದರೇನು?",
+        "ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆ ಎಂದರೇನು?",
+        "AI ಎಂದರೇನು?",
+        "technology yenchina?",
+        "AI yenchina?",
+        "Technology mhaka sang"
+      ],
+      "responses": {
+        "en": ["Technology is the practical use of scientific knowledge to solve problems and perform tasks."],
+        "kn": ["ತಂತ್ರಜ್ಞಾನವು ಸಮಸ್ಯೆಗಳನ್ನು ಪರಿಹರಿಸಲು ಮತ್ತು ಕಾರ್ಯಗಳನ್ನು ನಿರ್ವಹಿಸಲು ವೈಜ್ಞಾನಿಕ ಜ್ಞಾನವನ್ನು ಬಳಸುವ ವಿಧಾನವಾಗಿದೆ."],
+        "tcy": ["Technology andre scientific knowledge practical agi use malpodu problems solve malpod."],
+        "kok": ["Technology mhunnchem scientific dnyan practical ritin vaprun problems solve korchem."]
+      }
+    },
+
+    {
+      "tag": "weather",
+      "patterns": [
+        "what is the weather",
+        "weather today",
+        "how is the weather",
+        "today weather",
+        "ಹವಾಮಾನ ಹೇಗಿದೆ?",
+        "ಇಂದಿನ ಹವಾಮಾನ",
+        "ಇಂದು ಹವಾಮಾನ ಹೇಗಿದೆ?",
+        "weather yenchina?",
+        "Inna weather enchina?",
+        "Havaman kitem asa?"
+      ],
+      "responses": {
+        "en": ["I can provide weather information when a live weather service is connected."],
+        "kn": ["ಲೈವ್ ಹವಾಮಾನ ಸೇವೆಯನ್ನು ಸಂಪರ್ಕಿಸಿದಾಗ ನೈಜ ಸಮಯದ ಹವಾಮಾನ ಮಾಹಿತಿಯನ್ನು ನೀಡಬಹುದು."],
+        "tcy": ["Live weather service connect malpina actual weather information provide malpodu."],
+        "kok": ["Live weather service connect kel'yar hanv current weather information diunk shakta."]
+      }
+    },
+
+    {
+      "tag": "general_knowledge",
+      "patterns": [
+        "what is India",
+        "tell me about India",
+        "what is a computer",
+        "what is science",
+        "general knowledge",
+        "ಭಾರತ ಎಂದರೇನು?",
+        "ಭಾರತದ ಬಗ್ಗೆ ತಿಳಿಸಿ",
+        "ಕಂಪ್ಯೂಟರ್ ಎಂದರೇನು?",
+        "ವಿಜ್ಞಾನ ಎಂದರೇನು?",
+        "general knowledge",
+        "India yenchina?",
+        "Computer yenchina?"
+      ],
+      "responses": {
+        "en": ["I can answer general knowledge questions using the information available to the assistant."],
+        "kn": ["ಸಹಾಯಕದಲ್ಲಿ ಲಭ್ಯವಿರುವ ಮಾಹಿತಿಯನ್ನು ಬಳಸಿಕೊಂಡು ಸಾಮಾನ್ಯ ಜ್ಞಾನ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಬಹುದು."],
+        "tcy": ["Assistant d available information use malpod general knowledge questionsge answer malpodu."],
+        "kok": ["Assistant kade available information vaprun general knowledge prosnank uttor diunk shakta."]
+      }
+    },
+
+    {
+      "tag": "location",
+      "patterns": [
+        "where are you",
+        "where is India",
+        "where is Karnataka",
+        "location",
+        "ಸ್ಥಳ ಎಲ್ಲಿದೆ?",
+        "ಭಾರತ ಎಲ್ಲಿದೆ?",
+        "ಕರ್ನಾಟಕ ಎಲ್ಲಿದೆ?",
+        "location yenkad?",
+        "India yenkad asa?",
+        "Karnataka yenkad asa?"
+      ],
+      "responses": {
+        "en": ["I can provide location-related information when the required place information is available."],
+        "kn": ["ಅಗತ್ಯವಿರುವ ಸ್ಥಳದ ಮಾಹಿತಿ ಲಭ್ಯವಿದ್ದರೆ ಸ್ಥಳಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ಮಾಹಿತಿಯನ್ನು ನೀಡಬಹುದು."],
+        "tcy": ["Required place information iddare location related information provide malpodu."],
+        "kok": ["Zai te place information available aslear location related information diunk shakta."]
+      }
+    },
+
+    {
+      "tag": "capabilities",
+      "patterns": [
+        "what can you do",
+        "what are your features",
+        "what services do you provide",
+        "how can you help me",
+        "ನೀವು ಏನು ಮಾಡಬಹುದು?",
+        "ನಿಮ್ಮ ವೈಶಿಷ್ಟ್ಯಗಳು ಏನು?",
+        "ನೀವು ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",
+        "yenchina malpodu?",
+        "Nimma features yenchina?",
+        "Tum mhaka kashi madat korunk shakta?"
+      ],
+      "responses": {
+        "en": ["I can communicate in multiple languages, understand conversation context, answer supported questions, and process voice input."],
+        "kn": ["ನಾನು ಹಲವು ಭಾಷೆಗಳಲ್ಲಿ ಸಂವಹನ ಮಾಡಬಹುದು, ಸಂಭಾಷಣೆಯ ಸಂದರ್ಭವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಬಹುದು, ಬೆಂಬಲಿತ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಬಹುದು ಮತ್ತು ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಅನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಬಹುದು."],
+        "tcy": ["Yan multiple languagesd communication malpodu, context artha malpodu, supported questionsge answer malpodu mattu voice input process malpodu."],
+        "kok": ["Hanv multiple languagesant communication korunk, context somzonk, supported prosnank uttor diunk ani voice input process korunk shakta."]
       }
     }
   ]

@@ -1,4 +1,4 @@
-.venv/
+﻿.venv/
 backend/.venv/
 __pycache__/
 *.py[cod]
@@ -6,3 +6,4 @@ __pycache__/
 frontend/node_modules/
 frontend/dist/
 backend/audio_temp/
+audio_temp/
