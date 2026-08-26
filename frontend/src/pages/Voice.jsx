@@ -31,41 +31,24 @@ function Voice() {
       setError("");
     };
 
-    recognition.onresult = async (event) => {
-      const transcript = event.results[0][0].transcript;
+   recognition.onresult = (event) => {
+  console.log("NUMBER OF RESULTS:", event.results.length);
 
-      console.log("You said:", transcript);
+  for (let i = 0; i < event.results.length; i++) {
+    console.log(
+      "RESULT",
+      i,
+      ":",
+      event.results[i][0].transcript
+    );
+  }
 
-      setText(transcript);
+  const transcript = event.results[0][0].transcript;
 
-      try {
-        const res = await fetch("http://127.0.0.1:8000/chat", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            user_id: "user1",
-            message: transcript,
-            language: "en",
-          }),
-        });
+  alert("Chrome heard: " + transcript);
 
-        if (!res.ok) {
-          throw new Error("Backend request failed");
-        }
-
-        const data = await res.json();
-
-        console.log("Assistant:", data);
-
-        setResponse(data.response);
-      } catch (error) {
-        console.error("Error connecting to backend:", error);
-        setError("Could not connect to the assistant.");
-      }
-    };
-
+  setText(transcript);
+};
     recognition.onerror = (event) => {
       console.error("Speech recognition error:", event.error);
 

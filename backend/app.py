@@ -10,9 +10,9 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from gtts import gTTS
 
-from backend.context_manager import SessionContextManager
-from backend.database import create_table, save_chat, get_chat_history
-from backend.nlp_preprocessing import preprocess_text
+from context_manager import SessionContextManager
+from database import create_table, save_chat, get_chat_history
+from nlp_preprocessing import preprocess_text
 
 
 # ============================================================
