@@ -106,3 +106,79 @@ body {
   background: #2563eb;
   color: white;
 }
+.voice-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.voice-circle {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    #4285f4,
+    #8ab4f8,
+    #c58af9
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 60px;
+  cursor: pointer;
+
+  box-shadow:
+    0 0 30px rgba(66,133,244,0.4),
+    0 0 60px rgba(197,138,249,0.4);
+
+  transition: 0.3s;
+}
+
+.voice-circle:hover {
+  transform: scale(1.05);
+}
+
+.listening {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.voice-text {
+  margin-top: 30px;
+  font-size: 20px;
+}
+.voice-page-button {
+  margin-top: 25px;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #4285f4, #8ab4f8, #c58af9);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(66, 133, 244, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.voice-page-button:hover {
+  transform: scale(1.05);
+}
