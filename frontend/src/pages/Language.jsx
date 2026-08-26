@@ -4,37 +4,52 @@ function Language() {
   const navigate = useNavigate();
 
   const languages = [
-    "English",
-    "Kannada",
-    "Tulu",
-    "Konkani"
+    { name: "English", code: "en" },
+    { name: "Kannada", code: "kn" },
+    { name: "Tulu", code: "tcy" },
+    { name: "Konkani", code: "kok" },
   ];
 
-  const selectLanguage = (language) => {
-    localStorage.setItem("selectedLanguage", language);
-    navigate("/chat");
+  const selectLanguage = (code) => {
+    localStorage.setItem(
+      "selectedLanguage",
+      code
+    );
+
+    navigate("/chat", {
+      state: {
+        language: code,
+      },
+    });
   };
 
   return (
     <div className="language-page">
       <div className="language-container">
+
         <h1>Select Your Language</h1>
 
         <p>
-          Choose the language you want to communicate in.
+          Choose the language you want to
+          communicate in.
         </p>
 
         <div className="language-list">
+
           {languages.map((language) => (
             <button
-              key={language}
+              key={language.code}
               className="language-button"
-              onClick={() => selectLanguage(language)}
+              onClick={() =>
+                selectLanguage(language.code)
+              }
             >
-              {language}
+              {language.name}
             </button>
           ))}
+
         </div>
+
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import VoiceButton from "../components/VoiceButton";
 
 const API_URL = "http://127.0.0.1:8000";
 
@@ -154,6 +155,27 @@ function Chat() {
     }
   };
 
+  const handleVoiceResult = (data) => {
+    const userText =
+      data.user_query_text || "";
+
+    const botText =
+      data.response_text ||
+      "Sorry, I could not generate a response.";
+
+    setMessages((previous) => [
+      ...previous,
+      {
+        sender: "user",
+        text: userText,
+      },
+      {
+        sender: "bot",
+        text: botText,
+      },
+    ]);
+  };
+
   // ---------------------------------------------------
   // ENTER KEY
   // ---------------------------------------------------
@@ -279,6 +301,14 @@ function Chat() {
         >
           {loading ? "Sending..." : "Send"}
         </button>
+
+        <VoiceButton
+          userId={userId}
+          language={selectedLanguage}
+          onVoiceResult={handleVoiceResult}
+          disabled={loading}
+        />
+
       </div>
 
       <button
