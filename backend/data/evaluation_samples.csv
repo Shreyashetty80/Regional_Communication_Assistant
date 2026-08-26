@@ -7,3 +7,13 @@ TC05,Namaskara,tcy,greeting
 TC06,Solmelu,tcy,greeting
 TC07,Dev borem kokum,kok,greeting
 TC08,Hi ನಮಸ್ಕಾರ,mixed,greeting
+TC09,Thank you,en,thanks
+TC10,ಧನ್ಯವಾದ,kn,thanks
+TC11,Bye,en,farewell
+TC12,Goodbye,en,farewell
+TC13,ವಿದಾಯ,kn,farewell
+TC14,Can you help me,en,help
+TC15,What is the weather,en,weather
+TC16,Where is the college,en,college
+TC17,What is Python,en,technology
+TC18,What is this place,en,location
