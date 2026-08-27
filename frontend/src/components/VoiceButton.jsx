@@ -45,7 +45,7 @@ function VoiceButton({
         const audioBlob = new Blob(
           audioChunksRef.current,
           {
-            type: "audio/wav",
+             type: "audio/webm",
           }
         );
 
@@ -90,7 +90,7 @@ function VoiceButton({
       formData.append(
         "file",
         audioBlob,
-        "voice.wav"
+        "voice.webm"
       );
 
       const response = await fetch(

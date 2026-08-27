@@ -13,6 +13,7 @@ from gtts import gTTS
 from context_manager import SessionContextManager
 from database import create_table, save_chat, get_chat_history
 from nlp_preprocessing import preprocess_text
+from dotenv import load_dotenv
 
 
 # ============================================================
@@ -20,6 +21,7 @@ from nlp_preprocessing import preprocess_text
 # ============================================================
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 MODEL_PATH = os.path.join(BASE_DIR, "model.pkl")
 INTENTS_PATH = os.path.join(BASE_DIR, "data", "intents.json")
@@ -68,7 +70,7 @@ create_table()
 # SARVAM API KEY
 # ============================================================
 
-SARVAM_API_KEY = "YOUR_SARVAM_API_KEY_HERE"
+SARVAM_API_KEY = os.getenv("SARVAM_API_KEY")
 
 
 # ============================================================
@@ -84,15 +86,14 @@ class ChatRequest(BaseModel):
 # ============================================================
 # SPEECH TO TEXT
 # ============================================================
-
 def transcribe_speech(
     audio_path: str,
     lang_code: str = "kn-IN"
 ) -> str:
 
-    # Preview fallback when Sarvam API key is not configured
-    if SARVAM_API_KEY == "YOUR_SARVAM_API_KEY_HERE":
-        return "ನಮಸ್ಕಾರ"
+    if not SARVAM_API_KEY:
+        print("❌ SARVAM_API_KEY is not configured")
+        return ""
 
     url = "https://api.sarvam.ai/speech-to-text"
 
@@ -105,11 +106,15 @@ def transcribe_speech(
         with open(audio_path, "rb") as f:
 
             files = {
-                "file": f
+                "file": (
+                    os.path.basename(audio_path),
+                    f,
+                    "audio/webm"
+                )
             }
 
             data = {
-                "model": "saaras-v3",
+                "model": "saaras:v3",
                 "language_code": lang_code
             }
 
@@ -124,6 +129,8 @@ def transcribe_speech(
         if response.status_code == 200:
 
             result = response.json()
+
+            print("Sarvam response:", result)
 
             return result.get("transcript", "")
 
@@ -140,8 +147,6 @@ def transcribe_speech(
         print("Speech-to-text error:", e)
 
         return ""
-
-
 # ============================================================
 # INTENT PREDICTION
 # ============================================================
