@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Regional Communication Assistant</string>
+    <string name="title_activity_main">Regional Communication Assistant</string>
+    <string name="package_name">com.regionalcommunication.assistant</string>
+    <string name="custom_url_scheme">com.regionalcommunication.assistant</string>
+</resources>

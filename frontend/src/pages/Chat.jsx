@@ -7,7 +7,10 @@ const API_URL = "http://127.0.0.1:8000";
 function Chat() {
   const location = useLocation();
 
-  // Get selected language
+  // ---------------------------------------------------
+  // SELECTED LANGUAGE
+  // ---------------------------------------------------
+
   const selectedLanguage =
     location.state?.language ||
     localStorage.getItem("selectedLanguage") ||
@@ -23,16 +26,24 @@ function Chat() {
   const languageName =
     languageNames[selectedLanguage] || "English";
 
-  // Temporary user ID
+  // ---------------------------------------------------
+  // USER ID
+  // ---------------------------------------------------
+
   const userId =
     localStorage.getItem("user_id") || "user_001";
+
+  // ---------------------------------------------------
+  // STATES
+  // ---------------------------------------------------
 
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [historyLoading, setHistoryLoading] = useState(false);
 
   // ---------------------------------------------------
-  // LOAD CHAT HISTORY FROM DATABASE
+  // LOAD CHAT HISTORY
   // ---------------------------------------------------
 
   useEffect(() => {
@@ -41,6 +52,8 @@ function Chat() {
 
   const loadChatHistory = async () => {
     try {
+      setHistoryLoading(true);
+
       const response = await fetch(
         `${API_URL}/history/${userId}`
       );
@@ -74,11 +87,13 @@ function Chat() {
         "Chat history error:",
         error
       );
+    } finally {
+      setHistoryLoading(false);
     }
   };
 
   // ---------------------------------------------------
-  // SEND MESSAGE
+  // SEND TEXT MESSAGE
   // ---------------------------------------------------
 
   const sendMessage = async () => {
@@ -155,6 +170,10 @@ function Chat() {
     }
   };
 
+  // ---------------------------------------------------
+  // VOICE RESULT
+  // ---------------------------------------------------
+
   const handleVoiceResult = (data) => {
     const userText =
       data.user_query_text || "";
@@ -187,11 +206,32 @@ function Chat() {
   };
 
   // ---------------------------------------------------
-  // CLEAR LOCAL CHAT VIEW
+  // REFRESH CHAT HISTORY
   // ---------------------------------------------------
 
   const refreshHistory = () => {
     loadChatHistory();
+  };
+
+  // ---------------------------------------------------
+  // CLEAR CHAT
+  // ---------------------------------------------------
+  // This only clears the current screen.
+  // Database history is NOT deleted.
+  // ---------------------------------------------------
+
+  const clearChat = () => {
+    if (messages.length === 0) {
+      return;
+    }
+
+    const confirmClear = window.confirm(
+      "Are you sure you want to clear the chat from the screen?"
+    );
+
+    if (confirmClear) {
+      setMessages([]);
+    }
   };
 
   // ---------------------------------------------------
@@ -207,70 +247,175 @@ function Chat() {
         fontFamily: "Arial, sans-serif",
       }}
     >
+
+      {/* ------------------------------------------------
+          HEADER
+      ------------------------------------------------ */}
+
       <h1>
         {languageName} Chat Assistant
       </h1>
 
       <p>
-        User ID: {userId}
+        <strong>User ID:</strong> {userId}
       </p>
 
       <p>
-        Language: {languageName}
+        <strong>Language:</strong> {languageName}
       </p>
 
       <hr />
 
-      {/* CHAT HISTORY */}
+      {/* ------------------------------------------------
+          CHAT HISTORY HEADER
+      ------------------------------------------------ */}
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "10px",
+        }}
+      >
+        <h2>
+          Conversation
+        </h2>
+
+        <div
+          style={{
+            display: "flex",
+            gap: "8px",
+          }}
+        >
+
+          {/* REFRESH */}
+
+          <button
+            onClick={refreshHistory}
+            disabled={historyLoading}
+          >
+            {historyLoading
+              ? "Refreshing..."
+              : "🔄 Refresh"}
+          </button>
+
+          {/* CLEAR */}
+
+          <button
+            onClick={clearChat}
+            disabled={
+              messages.length === 0 ||
+              loading
+            }
+          >
+            🗑️ Clear Chat
+          </button>
+
+        </div>
+      </div>
+
+      {/* ------------------------------------------------
+          CHAT AREA
+      ------------------------------------------------ */}
 
       <div
         style={{
           minHeight: "300px",
           maxHeight: "500px",
           overflowY: "auto",
-          padding: "10px 0",
+          border: "1px solid #ccc",
+          borderRadius: "8px",
+          padding: "15px",
+          backgroundColor: "#fafafa",
         }}
       >
-        {messages.length === 0 ? (
-          <p>
-            No previous conversation found.
-          </p>
-        ) : (
-          messages.map((message, index) => (
-            <div
-              key={index}
-              style={{
-                marginBottom: "12px",
-              }}
-            >
-              <strong>
-                {message.sender === "user"
-                  ? "You"
-                  : "Assistant"}
-                :
-              </strong>
 
-              <span
+        {messages.length === 0 ? (
+
+          <p
+            style={{
+              textAlign: "center",
+              color: "#777",
+            }}
+          >
+            No conversation to display.
+          </p>
+
+        ) : (
+
+          messages.map(
+            (message, index) => (
+
+              <div
+                key={index}
                 style={{
-                  marginLeft: "8px",
+                  marginBottom: "15px",
+                  padding: "10px",
+                  borderRadius: "8px",
+                  backgroundColor:
+                    message.sender === "user"
+                      ? "#e8f0fe"
+                      : "#f1f1f1",
                 }}
               >
-                {message.text}
-              </span>
-            </div>
-          ))
+
+                <strong>
+                  {message.sender === "user"
+                    ? "You"
+                    : "Assistant"}
+                  :
+                </strong>
+
+                <span
+                  style={{
+                    marginLeft: "8px",
+                  }}
+                >
+                  {message.text}
+                </span>
+
+              </div>
+
+            )
+          )
+
         )}
 
+        {/* LOADING */}
+
         {loading && (
-          <p>
-            <strong>Assistant:</strong> Typing...
-          </p>
+
+          <div
+            style={{
+              marginBottom: "15px",
+              padding: "10px",
+              borderRadius: "8px",
+              backgroundColor: "#f1f1f1",
+            }}
+          >
+            <strong>
+              Assistant:
+            </strong>
+
+            <span
+              style={{
+                marginLeft: "8px",
+              }}
+            >
+              Typing...
+            </span>
+          </div>
+
         )}
+
       </div>
 
       <hr />
 
-      {/* INPUT */}
+      {/* ------------------------------------------------
+          INPUT AREA
+      ------------------------------------------------ */}
 
       <div
         style={{
@@ -279,6 +424,9 @@ function Chat() {
           marginTop: "15px",
         }}
       >
+
+        {/* TEXT INPUT */}
+
         <input
           type="text"
           value={input}
@@ -289,18 +437,30 @@ function Chat() {
           placeholder={
             `Type your message in ${languageName}`
           }
+          disabled={loading}
           style={{
             flex: 1,
             padding: "10px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
           }}
         />
 
+        {/* SEND BUTTON */}
+
         <button
           onClick={sendMessage}
-          disabled={loading}
+          disabled={
+            loading ||
+            !input.trim()
+          }
         >
-          {loading ? "Sending..." : "Send"}
+          {loading
+            ? "Sending..."
+            : "Send"}
         </button>
+
+        {/* VOICE BUTTON */}
 
         <VoiceButton
           userId={userId}
@@ -311,14 +471,6 @@ function Chat() {
 
       </div>
 
-      <button
-        onClick={refreshHistory}
-        style={{
-          marginTop: "12px",
-        }}
-      >
-        Refresh Chat History
-      </button>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Voice.css";
 
 function Voice() {
   const [isListening, setIsListening] = useState(false);
@@ -26,29 +27,41 @@ function Voice() {
     recognition.interimResults = false;
 
     recognition.onstart = () => {
-      console.log("🎙️ Voice recognition started");
       setIsListening(true);
       setError("");
     };
 
-   recognition.onresult = (event) => {
-  console.log("NUMBER OF RESULTS:", event.results.length);
+    recognition.onresult = async (event) => {
+      const transcript = event.results[0][0].transcript;
 
-  for (let i = 0; i < event.results.length; i++) {
-    console.log(
-      "RESULT",
-      i,
-      ":",
-      event.results[i][0].transcript
-    );
-  }
+      setText(transcript);
 
-  const transcript = event.results[0][0].transcript;
+      try {
+        const res = await fetch("http://127.0.0.1:8000/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_id: "voice_user",
+            message: transcript,
+            language: "en",
+          }),
+        });
 
-  alert("Chrome heard: " + transcript);
+        if (!res.ok) {
+          throw new Error("Server error");
+        }
 
-  setText(transcript);
-};
+        const data = await res.json();
+
+        setResponse(data.response || "No response received.");
+      } catch (err) {
+        console.error(err);
+        setError("Could not connect to the assistant.");
+      }
+    };
+
     recognition.onerror = (event) => {
       console.error("Speech recognition error:", event.error);
 
@@ -68,14 +81,13 @@ function Voice() {
     };
 
     recognition.onend = () => {
-      console.log("🎙️ Voice recognition ended");
       setIsListening(false);
     };
 
     try {
       recognition.start();
-    } catch (error) {
-      console.error("Could not start recognition:", error);
+    } catch (err) {
+      console.error(err);
       setIsListening(false);
       setError("Could not start voice recognition.");
     }
@@ -83,38 +95,141 @@ function Voice() {
 
   return (
     <div className="voice-page">
-      <h1>Voice Assistant</h1>
 
-      <p>
-        {isListening
-          ? "🎙️ Listening... Speak now"
-          : "Tap the microphone"}
-      </p>
+      {/* HEADER */}
+      <header className="voice-header">
+        <div className="voice-logo">
+          🎙️
+        </div>
 
-      <div
-        className={`voice-circle ${isListening ? "listening" : ""}`}
-        onClick={startVoice}
-      >
-        🎙️
-      </div>
+        <div>
+          <h1>Voice Assistant</h1>
+          <p>Speak naturally and communicate with your AI assistant</p>
+        </div>
+      </header>
 
-      <div className="voice-text">
-        <strong>You:</strong>
-        <br />
-        {text || "Your speech will appear here..."}
-      </div>
 
-      <div className="assistant-response">
-        <strong>Assistant:</strong>
-        <br />
-        {response || "Assistant response will appear here..."}
-      </div>
+      {/* MAIN CARD */}
+      <main className="voice-card">
 
-      {error && (
-        <p style={{ color: "red", marginTop: "15px" }}>
-          {error}
+        {/* STATUS */}
+        <div className="voice-status">
+          <span
+            className={`status-dot ${
+              isListening ? "active" : ""
+            }`}
+          ></span>
+
+          {isListening ? "Listening..." : "Ready to listen"}
+        </div>
+
+
+        {/* MICROPHONE */}
+        <button
+          className={`mic-button ${
+            isListening ? "mic-active" : ""
+          }`}
+          onClick={startVoice}
+          aria-label="Start voice recognition"
+        >
+          <span className="mic-symbol">🎙️</span>
+        </button>
+
+
+        <h2>
+          {isListening
+            ? "Listening to you..."
+            : "Tap the microphone"}
+        </h2>
+
+        <p className="voice-hint">
+          Speak your question clearly. Your speech will be converted
+          into text and sent to the AI assistant.
         </p>
-      )}
+
+
+        {/* USER MESSAGE */}
+        <div className="conversation-box user-box">
+
+          <div className="message-label">
+            <span className="label-icon">👤</span>
+            You said
+          </div>
+
+          <div className="message-content">
+            {text || (
+              <span className="placeholder">
+                Your speech will appear here...
+              </span>
+            )}
+          </div>
+
+        </div>
+
+
+        {/* ASSISTANT MESSAGE */}
+        <div className="conversation-box assistant-box">
+
+          <div className="message-label">
+            <span className="label-icon">🤖</span>
+            Assistant
+          </div>
+
+          <div className="message-content">
+            {response || (
+              <span className="placeholder">
+                Assistant response will appear here...
+              </span>
+            )}
+          </div>
+
+        </div>
+
+
+        {/* ERROR */}
+        {error && (
+          <div className="voice-error">
+            ⚠️ {error}
+          </div>
+        )}
+
+      </main>
+
+
+      {/* FEATURES */}
+      <section className="voice-features">
+
+        <div className="feature">
+          <div className="feature-icon">🎤</div>
+
+          <div>
+            <strong>Speech Recognition</strong>
+            <p>Convert your voice into text</p>
+          </div>
+        </div>
+
+
+        <div className="feature">
+          <div className="feature-icon">🌐</div>
+
+          <div>
+            <strong>Multilingual</strong>
+            <p>English, Kannada, Tulu & Konkani</p>
+          </div>
+        </div>
+
+
+        <div className="feature">
+          <div className="feature-icon">🤖</div>
+
+          <div>
+            <strong>AI Assistant</strong>
+            <p>Get intelligent responses</p>
+          </div>
+        </div>
+
+      </section>
+
     </div>
   );
 }
