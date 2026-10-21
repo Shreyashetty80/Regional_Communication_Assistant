@@ -7,7 +7,7 @@ function Language() {
     { name: "English", code: "en" },
     { name: "Kannada", code: "kn" },
     { name: "Tulu", code: "tcy" },
-    { name: "Konkani", code: "kok" },
+    
   ];
 
   const selectLanguage = (code) => {

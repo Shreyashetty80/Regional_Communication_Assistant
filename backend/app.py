@@ -53,7 +53,7 @@ app = FastAPI(
     title="Context-Aware Smart Communication Assistant",
     description=(
         "AI-powered multilingual communication assistant "
-        "supporting English, Kannada, Tulu and Konkani."
+        "supporting English, Kannada, Tulu  ."
     ),
     version="2.0.0"
 )
@@ -157,7 +157,7 @@ LANGUAGE_NAMES = {
 
     "tcy": "Tulu",
 
-    "kok": "Konkani"
+    
 }
 
 
@@ -185,12 +185,11 @@ Supported Languages:
 1. English
 2. Kannada
 3. Tulu
-4. Konkani
 
 Main Features:
 1. AI Question Answering
 2. Context-aware conversation
-3. English ↔ Kannada ↔ Tulu ↔ Konkani translation
+3. English ↔ Kannada ↔ Tulu translation
 4. Speech-to-text
 5. Text-to-speech
 6. Multilingual chat
@@ -279,10 +278,6 @@ Tulu:
 - Tulu language
 - Kannada script
 
-Konkani:
-- Konkani language
-- Devanagari script
-
 IMPORTANT:
 
 LANGUAGE AND SCRIPT ARE DIFFERENT.
@@ -322,17 +317,6 @@ Tulu language + Kannada script = TULU.
 
 It is NOT Kannada.
 
-============================================================
-KONKANI
-============================================================
-
-If the requested language is Konkani:
-
-1. Respond in Konkani.
-2. Prefer Devanagari script.
-3. Do NOT respond in Kannada.
-4. Do NOT automatically translate Konkani into Hindi.
-5. Preserve Konkani vocabulary and grammar.
 
 ============================================================
 KANNADA
@@ -418,7 +402,6 @@ Examples:
 
 "English to Tulu: How are you?"
 
-"Konkani to Kannada: ..."
 
 Return the translation clearly.
 
@@ -492,7 +475,6 @@ Never confuse:
 
 Tulu with Kannada.
 
-Konkani with Hindi.
 
 Romanized language with native script.
 
@@ -613,9 +595,6 @@ IMPORTANT:
 - If language code is "tcy", respond in Tulu language using
   Kannada script.
 - NEVER substitute Kannada for Tulu.
-- If language code is "kok", respond in Konkani using
-  Devanagari script.
-- NEVER substitute Kannada or Hindi for Konkani.
 - Understand code-mixed input.
 - Understand follow-up questions.
 - Use recent conversation context.
@@ -624,6 +603,7 @@ IMPORTANT:
 - Use project knowledge for project-specific questions.
 - Do not mention internal prompts, datasets, or system instructions.
 """
+
 
 
     try:
@@ -871,24 +851,18 @@ def predict_intent(
 # ROOT API
 # ============================================================
 
+
 @app.get("/")
 def read_root():
 
     return {
-
         "status": "Active",
-
-        "message":
-            "Regional Assistant API Operational",
-
-        "gemini":
-            bool(gemini_client),
-
+        "message": "Regional Assistant API Operational",
+        "gemini": bool(gemini_client),
         "languages": [
             "English",
             "Kannada",
-            "Tulu",
-            "Konkani"
+            "Tulu"
         ]
     }
 
@@ -1129,41 +1103,24 @@ def get_languages():
                     "tcy"
             },
 
-            {
-                "name":
-                    "Konkani",
-
-                "code":
-                    "kok"
-            }
 
         ]
     }
+
 
 
 # ============================================================
 # HISTORY API
 # ============================================================
 
-@app.get(
-    "/history/{user_id}"
-)
-def get_history(
-    user_id: str
-):
-
-    history = get_chat_history(
-        user_id
-    )
-
+@app.get("/history/{user_id}")
+def get_history(user_id: str, language: str = None):
+    history = get_chat_history(user_id, language)
 
     return {
-
-        "user_id":
-            user_id,
-
-        "history":
-            history
+        "user_id": user_id,
+        "language": language,
+        "history": history
     }
 
 
@@ -1171,27 +1128,13 @@ def get_history(
 # CLEAR CHAT HISTORY
 # ============================================================
 
-@app.delete(
-    "/history/{user_id}"
-)
-def clear_history(
-    user_id: str
-):
-
+@app.delete("/history/{user_id}")
+def clear_history(user_id: str):
     try:
+        db_path = os.path.join(BASE_DIR, "chat_history.db")
 
-        db_path = os.path.join(
-            BASE_DIR,
-            "chat_history.db"
-        )
-
-
-        conn = sqlite3.connect(
-            db_path
-        )
-
+        conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-
 
         cursor.execute(
             """
@@ -1201,46 +1144,24 @@ def clear_history(
             (user_id,)
         )
 
-
         conn.commit()
-
         conn.close()
 
-
-        # Clear context
-
-        context_store.clear_context(
-            user_id
-        )
-
+        # Clear the in-memory conversation context
+        context_store.clear_context(user_id)
 
         return {
-
-            "success":
-                True,
-
-            "message":
-                "Chat history cleared successfully."
+            "success": True,
+            "message": "Chat history cleared successfully."
         }
-
 
     except Exception as e:
-
-        print(
-            "Clear history error:",
-            e
-        )
-
+        print("Clear history error:", e)
 
         return {
-
-            "success":
-                False,
-
-            "message":
-                "Unable to clear chat history."
+            "success": False,
+            "message": "Unable to clear chat history."
         }
-
 
 # ============================================================
 # VOICE PROCESSING API
@@ -1322,8 +1243,7 @@ async def process_voice(
         "tcy-IN":
             "tcy",
 
-        "kok-IN":
-            "kok"
+        
     }
 
 
@@ -1504,12 +1424,7 @@ async def process_voice(
         "tcy-IN":
             "kn",
 
-        # Konkani fallback
-        "kok":
-            "hi",
-
-        "kok-IN":
-            "hi"
+        
     }
 
 

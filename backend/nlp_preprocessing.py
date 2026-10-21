@@ -15,7 +15,7 @@ STOP_WORDS = {
     "en": {"the", "a", "an", "is", "are", "am", "to", "of", "in", "on", "for"},
     "kn": {"ಅದು", "ಇದು", "ಮತ್ತು", "ಒಂದು"},
     "tcy": {"and", "the", "a", "an"},
-    "kok": {"ani", "ek", "tem"},
+    
 }
 
 def normalize_unicode(text: str) -> str:
@@ -55,7 +55,7 @@ def preprocess_text(text: str, language: str = "en") -> str:
     if not text:
         return ""
 
-    # Lowercase only affects scripts where case exists; Kannada/Tulu/Konkani
+    # Lowercase only affects scripts where case exists; Kannada/Tulu
     # Unicode text remains unchanged.
     text = text.lower()
     tokens = tokenize(text)

@@ -156,7 +156,7 @@ function VoiceButton({
   };
 
   // ============================================================
-  // SARVAM VOICE - ENGLISH / KANNADA / KONKANI
+  // SARVAM VOICE - ENGLISH / KANNADA 
   // ============================================================
 
   const startRecording = async () => {

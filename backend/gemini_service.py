@@ -64,12 +64,12 @@ Supported Languages:
 1. English
 2. Kannada
 3. Tulu
-4. Konkani
+
 
 Main Features:
 1. AI Question Answering
 2. Context-aware conversation
-3. English ↔ Kannada ↔ Tulu ↔ Konkani translation
+3. English ↔ Kannada ↔ Tulu  translation
 4. Speech-to-text
 5. Text-to-speech
 6. Multilingual chat
@@ -153,7 +153,7 @@ The assistant must understand that "it" means Python.
 English
 Kannada
 Tulu
-Konkani
+
 
 4. LANGUAGE RULE:
 
@@ -165,7 +165,7 @@ If the user asks in English, answer in English.
 
 If the user asks in Tulu, answer in Tulu.
 
-If the user asks in Konkani, answer in Konkani.
+
 
 5. NATIVE SCRIPT:
 
@@ -174,14 +174,13 @@ For Kannada, use Kannada script.
 For Tulu, prefer Tulu written in Kannada script when appropriate,
 instead of unnecessary English/Roman transliteration.
 
-For Konkani, prefer native Devanagari script when appropriate,
-instead of unnecessary Roman transliteration.
+
 
 Do NOT automatically convert regional-language responses into English.
 
 6. CODE-MIXED INPUT:
 
-Users may mix English with Kannada, Tulu, or Konkani.
+Users may mix English with Kannada, Tulu.
 
 Understand the meaning and respond naturally in the requested language.
 
@@ -204,7 +203,7 @@ Examples:
 
 "English to Tulu: How are you?"
 
-"Konkani to Kannada: ..."
+
 
 Return the translation clearly.
 
@@ -284,7 +283,7 @@ def generate_gemini_response(
 
         "tcy": "Tulu",
 
-        "kok": "Konkani"
+       
     }
 
     language_name = language_names.get(

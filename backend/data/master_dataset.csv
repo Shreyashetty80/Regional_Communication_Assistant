@@ -14,8 +14,3 @@ id,text,language,intent,context,response
 13,Yenchina ullar?,tcy,greeting,new_conversation,Solmelu! Yan enkanchana help mpal?
 14,Namaskara anna,tcy,greeting,new_conversation,Solmelu! Yan enkanchana help mpal?
 15,"Solmelu, yenchina ullar?",tcy,greeting,new_conversation,Solmelu! Yan enkanchana help mpal?
-16,Dev borem korum,kok,greeting,new_conversation,Dev borem korum! Hanv tumka kashi madat korum?
-17,Dev borem,kok,greeting,new_conversation,Dev borem korum! Hanv tumka kashi madat korum?
-18,Kitem asa?,kok,greeting,new_conversation,Dev borem korum! Hanv tumka kashi madat korum?
-19,Namaskar,kok,greeting,new_conversation,Dev borem korum! Hanv tumka kashi madat korum?
-20,"Dev borem korum, kitem asa?",kok,greeting,new_conversation,Dev borem korum! Hanv tumka kashi madat korum?

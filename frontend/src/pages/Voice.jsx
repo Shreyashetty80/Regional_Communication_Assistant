@@ -214,7 +214,7 @@ function Voice() {
 
           <div>
             <strong>Multilingual</strong>
-            <p>English, Kannada, Tulu & Konkani</p>
+            <p>English, Kannada, Tulu </p>
           </div>
         </div>
 
